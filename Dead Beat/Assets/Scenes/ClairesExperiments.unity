@@ -2283,7 +2283,7 @@ GameObject:
   - component: {fileID: 227954402}
   - component: {fileID: 227954401}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16291,13 +16291,13 @@ SceneRoots:
   m_Roots:
   - {fileID: 65981203}
   - {fileID: 784942807}
+  - {fileID: 227954404}
+  - {fileID: 1827995517}
   - {fileID: 757232044}
   - {fileID: 1177170797}
   - {fileID: 761974495}
-  - {fileID: 1827995517}
   - {fileID: 1599091728}
   - {fileID: 511400735}
-  - {fileID: 227954404}
   - {fileID: 1432585940}
   - {fileID: 448612639}
   - {fileID: 379609048}
