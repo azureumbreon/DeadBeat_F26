@@ -106,11 +106,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: -1, z: -1}
       index: 1
-      probeCount: 2880
+      probeCount: 2816
       minSubdiv: 0
       indexChunkCount: 91
       shChunkCount: 1
-      bricksCount: 45
+      bricksCount: 44
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: -27, z: -27}
         minSubdiv: 0
@@ -134,11 +134,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: 0, z: -1}
       index: 4
-      probeCount: 48896
+      probeCount: 49024
       minSubdiv: 0
       indexChunkCount: 91
       shChunkCount: 6
-      bricksCount: 764
+      bricksCount: 766
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: 0, z: -27}
         minSubdiv: 0
@@ -148,11 +148,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: 0, z: 0}
       index: 13
-      probeCount: 31808
+      probeCount: 31936
       minSubdiv: 0
       indexChunkCount: 91
       shChunkCount: 4
-      bricksCount: 497
+      bricksCount: 499
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: 0, z: 0}
         minSubdiv: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
     m_Keys:
     - Default
     m_Values:
-    - sceneHash: 476276626
+    - sceneHash: 1281459826
       cellDataAsset:
         m_AssetGUID: 6b33bb2e4424614449f96df9558f2b5e
         m_StreamableAssetPath: APVStreamingAssets\54fa48a1e82c760488bc28cd735dc859\6b33bb2e4424614449f96df9558f2b5e.bytes
@@ -280,13 +280,13 @@ MonoBehaviour:
       - offset: 11312
         elementCount: 442
       - offset: 18384
-        elementCount: 45
-      - offset: 19104
+        elementCount: 44
+      - offset: 19088
         elementCount: 40
-      - offset: 19744
-        elementCount: 764
-      - offset: 31968
-        elementCount: 497
+      - offset: 19728
+        elementCount: 766
+      - offset: 31984
+        elementCount: 499
     m_Asset: {fileID: 4900000, guid: 6c9b0a100bd9c234bab32eb521727657, type: 3}
   cellSupportDataAsset:
     m_AssetGUID: 855ec657e3116b94280a3c566c07afb4
