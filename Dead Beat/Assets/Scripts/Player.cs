@@ -32,6 +32,13 @@ public class Player : MonoBehaviour
     public float gravity = -20f;
     public float groundY = 1f;
     private float velocityY;
+
+    //health variables - when currentDamage = maxDamage -> the player has died
+    private const int maxDamage = 3;
+    private int currentDamage = 0;
+    private bool isRegening = false;
+    private float regenTime = 5f; //the amount of time the player has to not get hit to regen 
+    private float regenCountdown;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -62,6 +69,22 @@ public class Player : MonoBehaviour
 
         //moves the player to the correct pos
         transform.position = pos;
+
+        //regen logic
+        if (isRegening)
+        {
+            //if the time is up
+            if(Time.time >= regenCountdown)
+            {
+                //decrease the damage and tell the game manager
+                currentDamage--;
+                regenCountdown = Time.time + regenTime;
+                GameManager.instance.AdjustCamera(currentDamage);
+                //if we are at full health, stop regenning
+                if(currentDamage == 0)
+                    isRegening = false;;
+            }
+        }
     }
 
     //moves the player to one track to the left
@@ -122,6 +145,16 @@ public class Player : MonoBehaviour
     //helper method to turn a transform pos into a Vector3
     private Vector3 PosToVector3(Transform pos){
         return new Vector3(pos.position.x, transform.position.y, pos.position.z);
+    }
+
+    void OnTriggerEnter(Collider col){
+        if(col.tag == "Obstacle"){
+            currentDamage++;
+            isRegening = true;
+            regenCountdown = Time.time + regenTime;
+            GameManager.instance.AdjustCamera(currentDamage);
+            GameManager.instance.ShakeCamera();
+        }
     }
     
 
