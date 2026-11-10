@@ -11,6 +11,9 @@ using System.Collections.Generic;
 public class Scroller : MonoBehaviour
 {
     
+    //singleton variable
+    public static Scroller instance;
+
     //variables
     public float speed = 10f;
     public Transform despawnPOS;
@@ -31,31 +34,50 @@ public class Scroller : MonoBehaviour
     //holds all obstacles that need to be spawned
     private Dictionary<int, List<PendingObstacle>> pending = new Dictionary<int, List<PendingObstacle>>();
 
-    void Start(){
-        for(int i = 0; i < tiles.Count; i++){
-            SetUpTile(tiles[i]);
+    void Awake()
+    {
+        if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(this.gameObject);
+            }
+        else
+        {
+            Destroy(this.gameObject);
         }
+    }
+
+    void Start(){
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.instance.GetInGame() == true){
+            for (int i = tiles.Count - 1; i >= 0; i--){
+                TrackTile tile = tiles[i];
 
-        for (int i = tiles.Count - 1; i >= 0; i--){
-            TrackTile tile = tiles[i];
+                //moves toward the player
+                tile.transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-            //moves toward the player
-            tile.transform.Translate(Vector3.left * speed * Time.deltaTime);
-
-            //checks if a tile has reached the despawn point
-            //if it has, start its despawn, remove it from the list, and add a new one after the last tile
-            if(tile.transform.position.x <= despawnPOS.position.x){
-                tile.StartDespawn();
-                tiles.RemoveAt(i);
-                TrackTile temp = Instantiate(trackPrefab, new Vector3(tiles[tiles.Count - 1].transform.position.x + trackLength, 0, 0), Quaternion.identity);
-                SetUpTile(temp);
-                tiles.Add(temp);
+                //checks if a tile has reached the despawn point
+                //if it has, start its despawn, remove it from the list, and add a new one after the last tile
+                if(tile.transform.position.x <= despawnPOS.position.x){
+                    tile.StartDespawn();
+                    tiles.RemoveAt(i);
+                    TrackTile temp = Instantiate(trackPrefab, new Vector3(tiles[tiles.Count - 1].transform.position.x + trackLength, 0, 0), Quaternion.identity);
+                    SetUpTile(temp);
+                    tiles.Add(temp);
+                }
             }
+        }
+    }
+
+    //sets up the starting tiles when the game is first loaded
+    public void SetUpStartingTiles(){
+        for(int i = 0; i < tiles.Count; i++){
+            SetUpTile(tiles[i]);
         }
     }
 

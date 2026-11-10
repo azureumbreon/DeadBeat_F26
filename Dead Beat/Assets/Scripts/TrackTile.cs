@@ -42,14 +42,11 @@ public class TrackTile : MonoBehaviour
     //determines the correct track the obstacle is being spawned on 
     // and tells that railroad to spawn it
     public void NewObstacle(GameObject obstacle, float localX, trackPosition order){
-        
-        Railroad road = null;
         foreach(Railroad r in GetComponentsInChildren<Railroad>()){
             if(order == r.GetOrder()){
                 r.SpawnObstacle(obstacle, transform.position.x - pivotOffset + localX);
                 break;
             }
         }
-        Debug.LogWarning("no railroad found for " + order);
     }
 }
