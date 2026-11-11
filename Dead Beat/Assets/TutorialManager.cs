@@ -1,8 +1,5 @@
-/*
-Modified by: [Your Name]
+/* Juliet Kingsley
 Date: 11/10/2026
-Overarcing Tutorial Manager that extends Joe's GameManager structure.
-Slowly introduces jumping, shifting, and sliding across discrete time phases.
 */
 
 using UnityEngine;
@@ -12,12 +9,10 @@ public class TutorialManager : MonoBehaviour
 {
     public Scroller scroller;
 
-    // Obstacle prefabs
     public GameObject jumpBoxPrefab;
     public GameObject slideBoxPrefab;
     public GameObject tutorialBox;
 
-    // Lane shortcuts
     private trackPosition left = trackPosition.LEFT;
     private trackPosition middle = trackPosition.MIDDLE;
     private trackPosition right = trackPosition.RIGHT;
