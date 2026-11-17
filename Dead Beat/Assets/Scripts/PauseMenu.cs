@@ -11,6 +11,7 @@ public class Pause : MonoBehaviour
         {
             menu.SetActive(true);
             Time.timeScale = 0;
+            GameManager.instance.PauseGame();
         }
     }
 
@@ -18,10 +19,13 @@ public class Pause : MonoBehaviour
     {
         menu.SetActive(false);
         Time.timeScale = 1;
+        GameManager.instance.ResumeGame();
     }
 
     public void MainMenuButton()
     {
+        Time.timeScale = 1;
+        GameManager.instance.EndGame();
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 }

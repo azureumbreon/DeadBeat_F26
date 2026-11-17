@@ -2353,6 +2353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ef6f8dc872472458b8e7c8ec9e2182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  music: {fileID: 1303093058}
   jumpBoxPrefab: {fileID: 3656292387272305430, guid: 22f7bcc4efbdaff4280e2c60f6482ed7, type: 3}
   slideBoxPrefab: {fileID: 3754040522093223282, guid: 5bc7a8ca5d7de4d47915a06a17629a9c, type: 3}
   cam: {fileID: 65981202}
@@ -7009,11 +7010,9 @@ SceneRoots:
   - {fileID: 1595671455}
   - {fileID: 272927633}
   - {fileID: 1662009980}
-  - {fileID: 391638122}
   - {fileID: 1303093059}
   - {fileID: 234196939}
   - {fileID: 1962737093}
   - {fileID: 1797609526}
   - {fileID: 1254141015}
-  - {fileID: 463935596}
-  - {fileID: 391638122}
+  - {fileID: 138967489}
