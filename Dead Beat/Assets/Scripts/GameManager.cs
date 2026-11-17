@@ -14,7 +14,7 @@ using Unity.Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    //singleton variable
+     //singleton variable
     public static GameManager instance;
 
     //general game variables
@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
     private float[] intensityValues = {0.25f, 0.4f, 0.5f, 0.6f};
     private float targetIntensity;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -58,6 +57,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (inGame)
         {
             vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, targetIntensity, vignetteSpeed * Time.deltaTime);

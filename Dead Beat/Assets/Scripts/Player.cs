@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     public float groundY = 1f;
     private float velocityY;
 
-    //health variables - when currentDamage = maxDamage -> the player has died
+     //health variables - when currentDamage = maxDamage -> the player has died
     private const int maxDamage = 3;
     private int currentDamage = 0;
     private bool isRegening = false;
@@ -147,6 +147,7 @@ public class Player : MonoBehaviour
         return new Vector3(pos.position.x, transform.position.y, pos.position.z);
     }
 
+    //what happens when the player collides with an object
     void OnTriggerEnter(Collider col){
         if(col.tag == "Obstacle"){
             currentDamage++;

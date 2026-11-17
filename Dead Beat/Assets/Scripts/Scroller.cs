@@ -13,6 +13,9 @@ public class Scroller : MonoBehaviour
     //singleton variable
     public static Scroller instance;
     
+    //singleton variable
+    public static Scroller instance;
+
     //variables
     public float speed = 10f;
     public Transform despawnPOS;
@@ -46,8 +49,7 @@ public class Scroller : MonoBehaviour
         }
     }
 
-    void Start()
-    {
+    void Start(){
         
     }
 
