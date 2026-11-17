@@ -10,6 +10,8 @@ using System.Collections.Generic;
 
 public class Scroller : MonoBehaviour
 {
+    //singleton variable
+    public static Scroller instance;
     
     //singleton variable
     public static Scroller instance;
