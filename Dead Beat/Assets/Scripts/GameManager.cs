@@ -20,6 +20,14 @@ public class GameManager : MonoBehaviour
     //general game variables
     bool inGame = false;
 
+    //music variables
+    public AudioSource music; //core song that we are playing to
+    private double songStartDsp;
+    private double pauseStartDsp;
+    private bool paused = false;
+    //seconds since the song has started (stops when paused)
+    public float songTime => !inGame ? 0f : Mathf.Max(0f, (float)((paused ? pauseStartDsp : AudioSettings.dspTime) - songStartDsp));
+
     //obstacle prefabs
     public GameObject jumpBoxPrefab;
     public GameObject slideBoxPrefab;
@@ -77,6 +85,10 @@ public class GameManager : MonoBehaviour
             inGame = true;
             targetIntensity = intensityValues[0];
             vignette.intensity.value = intensityValues[0];
+
+            //start the song
+            songStartDsp = AudioSettings.dspTime + 0.5; //adds a small delay to make sure the audio is ready
+            music.PlayScheduled(songStartDsp);
         }
     }
 
@@ -102,6 +114,33 @@ public class GameManager : MonoBehaviour
     public void ShakeCamera(float strength = 1f)
     {
         impulseSource.GenerateImpulse(strength);
+    }
+
+    //handles pausing the game and song
+    public void PauseGame()
+    {
+        if (paused) return; //handles edge case
+        paused = true;
+        pauseStartDsp = AudioSettings.dspTime;
+        music.Pause();
+    }
+
+    //handles unpausing the game and song
+    public void ResumeGame()
+    {
+        if (!paused) return; //handles edge case
+        //shifts the start time forward to be in track after pausing
+        songStartDsp += AudioSettings.dspTime - pauseStartDsp;
+        paused = false;
+        music.UnPause();
+    }
+
+    //handles leaving the game scene when the player dies or beats the level
+    public void EndGame()
+    {
+        paused = false;
+        inGame = false;
+        music.Stop();
     }
     
     //getters

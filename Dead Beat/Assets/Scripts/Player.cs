@@ -74,11 +74,11 @@ public class Player : MonoBehaviour
         if (isRegening)
         {
             //if the time is up
-            if(Time.time >= regenCountdown)
+            if(GameManager.instance.songTime >= regenCountdown)
             {
                 //decrease the damage and tell the game manager
                 currentDamage--;
-                regenCountdown = Time.time + regenTime;
+                regenCountdown = GameManager.instance.songTime + regenTime;
                 GameManager.instance.AdjustCamera(currentDamage);
                 //if we are at full health, stop regenning
                 if(currentDamage == 0)
@@ -131,12 +131,12 @@ public class Player : MonoBehaviour
         transform.localEulerAngles = new Vector3(0, 0, 90);
         targetPOS.y = 0.5f;
         isSliding = true;
-        float endTime = Time.time + 1f;
+        float endTime = GameManager.instance.songTime + 1f;
         if (isJumping){ //makes the player fall faster if sliding when jumping
             velocityY = Mathf.Min(velocityY, -slamSpeed);
         }
         //ends the slide when 1 second is over or if the player cancels the slide
-        yield return new WaitUntil(() => Time.time >= endTime || !isSliding);
+        yield return new WaitUntil(() => GameManager.instance.songTime >= endTime || !isSliding);
         isSliding = false;
         transform.localEulerAngles = new Vector3(0, 0, 0);
         targetPOS.y = 1f;
@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
         if(col.tag == "Obstacle"){
             currentDamage++;
             isRegening = true;
-            regenCountdown = Time.time + regenTime;
+            regenCountdown = GameManager.instance.songTime + regenTime;
             GameManager.instance.AdjustCamera(currentDamage);
             GameManager.instance.ShakeCamera();
         }

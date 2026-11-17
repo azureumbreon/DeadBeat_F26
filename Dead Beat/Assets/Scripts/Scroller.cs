@@ -12,11 +12,9 @@ public class Scroller : MonoBehaviour
 {
     //singleton variable
     public static Scroller instance;
-    
-    //singleton variable
-    public static Scroller instance;
 
-    //variables
+
+    //track spawning variables
     public float speed = 10f;
     public Transform despawnPOS;
     private const float trackLength = 14f; //length of an individual track
@@ -25,6 +23,9 @@ public class Scroller : MonoBehaviour
     public List<TrackTile> tiles = new List<TrackTile>();
     public TrackTile trackPrefab;
     private int nextIndex = 0;
+
+    //music variables
+    private float lastSongTime;
 
     //structure that will hold an obstacle that needs to be spawn
     private struct PendingObstacle {
@@ -57,11 +58,16 @@ public class Scroller : MonoBehaviour
     void Update()
     {
         if(GameManager.instance.GetInGame() == true){
+            //how much the song has played since the last frame
+            float songTime = GameManager.instance.songTime;
+            float moveDist = (songTime - lastSongTime) * speed;
+            lastSongTime = songTime;
+
             for (int i = tiles.Count - 1; i >= 0; i--){
                 TrackTile tile = tiles[i];
 
                 //moves toward the player
-                tile.transform.Translate(Vector3.left * speed * Time.deltaTime);
+                tile.transform.Translate(Vector3.left * moveDist);
 
                 //checks if a tile has reached the despawn point
                 //if it has, start its despawn, remove it from the list, and add a new one after the last tile
@@ -78,6 +84,7 @@ public class Scroller : MonoBehaviour
 
     //sets up the starting tiles when the game is first loaded
     public void SetUpStartingTiles(){
+        lastSongTime = 0f; //reset song timer
         for(int i = 0; i < tiles.Count; i++){
             SetUpTile(tiles[i]);
         }
