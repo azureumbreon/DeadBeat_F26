@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class Pause : MonoBehaviour
 {
     public GameObject menu;
-
+    public Slider MasterVolume;
+    public AudioMixer MainAudioMixer;
     void Update()
     {
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -27,5 +30,10 @@ public class Pause : MonoBehaviour
         Time.timeScale = 1;
         GameManager.instance.EndGame();
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ChangeMasterVolume()
+    {
+        MainAudioMixer.SetFloat("MasterVolume", MasterVolume.value);
     }
 }
